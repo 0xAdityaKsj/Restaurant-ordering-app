@@ -4,7 +4,7 @@ import { menuArray } from "./data.js";
 let main = document.querySelector('.main')
 let master = document.querySelector('.master')
 
-master += `<div class="cart-h1">Orders</div>`
+master += `<div class="cart-h1"><h1>Your Order</h1></div>`
 
 
 let cartArray = []
@@ -13,14 +13,19 @@ let cartArray = []
 document.addEventListener("click", function (e) {
     if (e.target.dataset.cart) {
         addToCart(e.target.dataset.cart)
-        console.log('jdjdjdj')
+    }
+
+    if (e.target.dataset.remove) {
+        console.log(e.target.dataset.remove)
+        removeFromCart(e.target.dataset.remove)
     }
 })
 
 function addToCart(orderId) {
+    master = `<div class="cart-h1">Your Order</div>`
     menuArray.forEach(function (food) {
         if (food.id == orderId) {
-            cartArray.push(food.name)
+            cartArray.push([food.name, food.price])
         }
     })
     console.log('hdhdhf')
@@ -28,6 +33,13 @@ function addToCart(orderId) {
     render()
 }
 
+function removeFromCart(ele) {
+    const index = cartArray.findIndex(([name, price]) => name === ele[0].slice(0, -3) && price === JSON.parseInt(ele[0].slice(-2)));
+    console.log(index)
+    cartArray.splice(index, 1)
+
+    render()
+}
 
 
 function getFeedHtml() {
@@ -40,7 +52,7 @@ function getFeedHtml() {
         if (item.ingredients.length > 0) {
             item.ingredients.forEach(function (ing, index) {
 
-                ingHtml += `${ing}${index === item.ingredients.length - 1 ? '' : ','}`
+                ingHtml += `${ing}${index === item.ingredients.length - 1 ? '' : ', '}`
 
             })
         }
@@ -77,9 +89,9 @@ function getFeedHtml() {
         cartArray.forEach(function (item) {
             master += `
             <div class="orders">
-                <div>${item} <span> remove </span></div>
-            </div>
-            
+                <div class="order-name">${item[0]}      <span class="remove" data-remove="${item}"> remove </span></div>
+                <div class="order-price">$${item[1]}</div>
+            </div>  
             `
         })
 
@@ -89,6 +101,8 @@ function getFeedHtml() {
     return html;
 
 }
+
+
 
 
 function render() {
