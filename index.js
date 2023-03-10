@@ -34,7 +34,7 @@ function addToCart(orderId) {
 }
 
 function removeFromCart(ele) {
-    const index = cartArray.findIndex(([name, price]) => name === ele[0].slice(0, -3) && price === JSON.parseInt(ele[0].slice(-2)));
+    const index = cartArray.findIndex(([name, price]) => name === ele.slice(0, -3) && price === JSON.parseInt(ele.slice(-2)));
     console.log(index)
     cartArray.splice(index, 1)
 
