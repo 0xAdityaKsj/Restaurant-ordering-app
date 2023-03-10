@@ -4,8 +4,6 @@ import { menuArray } from "./data.js";
 let main = document.querySelector('.main')
 let master = document.querySelector('.master')
 
-master += `<div class="cart-h1"><h1>Your Order</h1></div>`
-
 
 let cartArray = []
 
@@ -13,11 +11,18 @@ let cartArray = []
 document.addEventListener("click", function (e) {
     if (e.target.dataset.cart) {
         addToCart(e.target.dataset.cart)
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     if (e.target.dataset.remove) {
-        console.log(e.target.dataset.remove)
         removeFromCart(e.target.dataset.remove)
+    }
+
+    if (e.target.dataset.btn) {
+
     }
 })
 
@@ -30,13 +35,16 @@ function addToCart(orderId) {
     })
     console.log('hdhdhf')
     console.log(cartArray)
+
     render()
 }
 
 function removeFromCart(ele) {
-    const index = cartArray.findIndex(([name, price]) => name === ele.slice(0, -3) && price === JSON.parseInt(ele.slice(-2)));
+    const index = cartArray.findIndex(([name, price]) => name === ele.slice(0, -3) && price === parseInt(ele.slice(-2)));
     console.log(index)
-    cartArray.splice(index, 1)
+    if (index != -1) {
+        cartArray.splice(index, 1)
+    }
 
     render()
 }
@@ -86,6 +94,8 @@ function getFeedHtml() {
 
 
     if (cartArray.length > 0) {
+        let totalPrice = 0;
+        master = '<div class="cart-h1">Your Order</div>'
         cartArray.forEach(function (item) {
             master += `
             <div class="orders">
@@ -93,7 +103,20 @@ function getFeedHtml() {
                 <div class="order-price">$${item[1]}</div>
             </div>  
             `
+
+            totalPrice += parseInt(item[1]);
         })
+
+        master += `<div class="border"></div>
+        <div class="total">
+            <div class="order-name">Total Price</div>
+            <div class="order-price">$${totalPrice}</div>
+        </div>
+        <div class="complete-order"><button class="complete-btn" data-btn="btn">Complete order</button></div>
+        
+        `
+
+
 
         html += master
     }
