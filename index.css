@@ -117,7 +117,7 @@ li {
 }
 
 .order-price {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
 }
 
@@ -127,4 +127,41 @@ li {
     color: grey;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     cursor: pointer;
+}
+
+.border {
+    border-top: 2px solid #393333;
+    width: 87%;
+    margin: 31px auto 14px auto;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 50px;
+}
+
+.total-price {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.complete-btn {
+    align-content: center;
+    width: 501px;
+    padding: 18px 180px;
+    background-color: #16DB99;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.complete-order {
+    display: flex;
+    justify-content: center;
+    margin-top: 53px;
+    padding-bottom: 53px;
 }
