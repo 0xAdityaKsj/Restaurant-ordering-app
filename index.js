@@ -3,6 +3,9 @@ import { menuArray } from "./data.js";
 
 let main = document.querySelector('.main')
 let master = document.querySelector('.master')
+let overlay = document.querySelector('.popup-overlay')
+let payBtn = document.querySelector('.pay-btn')
+let footer = document.getElementsByTagName('footer')
 
 
 let cartArray = []
@@ -22,20 +25,24 @@ document.addEventListener("click", function (e) {
     }
 
     if (e.target.dataset.btn) {
-
+        console.log('btn')
+        overlay.style.display = 'block';
     }
 })
 
+payBtn.addEventListener("click", function () {
+    overlay.style.display = 'none';
+    cartArray = []
+    render()
+})
+
 function addToCart(orderId) {
-    master = `<div class="cart-h1">Your Order</div>`
+    master = `<div div class="cart-h1" > Your Order</div > `
     menuArray.forEach(function (food) {
         if (food.id == orderId) {
             cartArray.push([food.name, food.price])
         }
     })
-    console.log('hdhdhf')
-    console.log(cartArray)
-
     render()
 }
 
@@ -60,33 +67,35 @@ function getFeedHtml() {
         if (item.ingredients.length > 0) {
             item.ingredients.forEach(function (ing, index) {
 
-                ingHtml += `${ing}${index === item.ingredients.length - 1 ? '' : ', '}`
+                ingHtml += `${ing}${index === item.ingredients.length - 1 ? '' : ', '} `
 
             })
         }
 
-        html += ` 
-        
-    <div class="feed">
-        <section class="item">
-            <div class="sec1">
-                <div class="img1">
-                    <h1>${item.emoji}</h1>
-                </div>
-                <ul class="item-info">
-                    <li class="heading">${item.name}</li>
-                    <li class="ing">${ingHtml}<li>
-                    <li class="price">$${item.price}</li>
-                </ul>
-            </div>
-            <div class="sec2">
-                <i class="fa-solid fa-cart-plus" data-cart='${item.id}'></i>
-            </div>
-        </section>
-    </div>
+        html += `
 
-    <div class="item-border"></div>
-    `
+        <div class="feed">
+            <section class="item">
+                <div class="sec1">
+                    <div class="img1">
+                        <h1>${item.emoji}</h1>
+                    </div>
+                    <ul class="item-info">
+                        <li class="heading">${item.name}</li>
+                        <li class="ing">${ingHtml}<li>
+                            <li class="price">$${item.price}</li>
+                        </ul>
+                        </div>
+                        <div class="sec2">
+                            <i class="fa-solid fa-cart-plus" data-cart='${item.id}'></i>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="item-border"></div>
+
+        </div>
+                `
 
         ingHtml = ''
     })
@@ -108,13 +117,13 @@ function getFeedHtml() {
         })
 
         master += `<div class="border"></div>
-        <div class="total">
-            <div class="order-name">Total Price</div>
-            <div class="order-price">$${totalPrice}</div>
-        </div>
-        <div class="complete-order"><button class="complete-btn" data-btn="btn">Complete order</button></div>
-        
-        `
+                <div class="total">
+                    <div class="order-name">Total Price</div>
+                    <div class="order-price">$${totalPrice}</div>
+                </div>
+                <div class="complete-order"><button class="complete-btn" data-btn="btn">Complete order</button></div>
+
+                `
 
 
 
