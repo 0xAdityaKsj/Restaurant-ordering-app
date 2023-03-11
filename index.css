@@ -31,6 +31,12 @@ li {
     list-style: none;
 }
 
+
+h1 {
+    color: red;
+}
+
+
 .feed {
     display: flex;
     width: 600px;
@@ -164,4 +170,66 @@ li {
     justify-content: center;
     margin-top: 53px;
     padding-bottom: 53px;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Example: semi-transparent black overlay */
+    z-index: 9999;
+    display: none;
+}
+
+
+
+.popup-one {
+    position: fixed;
+    top: 100px;
+    left: 470px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 524px;
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 4px;
+
+
+}
+
+.popup-heading {
+    display: flex;
+    justify-content: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.popup-one input[type=text],
+.popup-one input[type=number],
+.popup-one input[type=password] {
+    width: 475.91px;
+    height: 71.3px;
+    margin-top: 23px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.pay-btn {
+    margin-top: 43px;
+    margin-bottom: 30px;
+    height: 74px;
+    background: #16DB99;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
 }
