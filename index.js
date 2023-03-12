@@ -57,7 +57,7 @@ payBtn.addEventListener("click", function (event) {
     cartArray = []
     render()
     main.innerHTML += ` <div class="end-msg">
-                              <h1>Thanks for Odering ${name}</h1>
+                              <h1>Thank you for ordering ${name}</h1>
                         </div>`
 })
 
