@@ -5,6 +5,15 @@ let main = document.querySelector('.main')
 let master = document.querySelector('.master')
 let overlay = document.querySelector('.popup-overlay')
 let payBtn = document.querySelector('.pay-btn')
+
+const myForm = document.getElementById("myForm");
+let input1 = document.getElementById('input1')
+let input2 = document.getElementById('input2')
+let input3 = document.getElementById('input3')
+
+
+
+
 let footer = document.getElementsByTagName('footer')
 
 
@@ -30,10 +39,26 @@ document.addEventListener("click", function (e) {
     }
 })
 
-payBtn.addEventListener("click", function () {
+payBtn.addEventListener("click", function (event) {
+
+    let name = input1.value
+
+    if (!myForm.checkValidity()) {
+        event.preventDefault();
+        return;
+    }
+
+
+
     overlay.style.display = 'none';
+    input1.value = ""
+    input2.value = ""
+    input3.value = ""
     cartArray = []
     render()
+    main.innerHTML += ` <div class="end-msg">
+                              <h1>Thanks for Odering ${name}</h1>
+                        </div>`
 })
 
 function addToCart(orderId) {
